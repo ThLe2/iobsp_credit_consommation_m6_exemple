@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Exemple commenté — module 6</title><style>
+:root{--prune:#8C1E70;--prune-fonce:#5E1349;--prune-clair:#F4E6EE;--accent:#C77BAA;
+ --vert:#283C28;--gris:#3C3C3C;--gris-moyen:#8A7A85;--filet:#E8DCE5;--creme:#FAF6F8;
+ --ok:#2F7A4F;--ko:#B23B3B;--amb:#B5852A;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--creme);color:var(--gris);
+ font-family:"Nunito","Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.62}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px 60px}
+header.bandeau{background:var(--prune-fonce);color:#fff;padding:18px 0;border-bottom:4px solid var(--accent)}
+header.bandeau .wrap{padding-bottom:0}
+.chapitre{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#EAD3E3}
+.chapitre span{color:var(--accent);margin:0 6px}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:27px;line-height:1.25;margin:8px 0 4px;color:#fff}
+.sous{color:#EAD3E3;font-size:14.5px;margin:0}
+h2{font-family:Georgia,"Times New Roman",serif;font-size:20px;color:var(--prune-fonce);
+ margin:34px 0 0;padding-bottom:8px;border-bottom:2px solid var(--filet)}
+h2 .num{color:var(--accent);margin-right:8px}
+h3{font-size:15px;color:var(--vert);margin:20px 0 8px;letter-spacing:.02em}
+.carte{background:#fff;border:1px solid var(--filet);border-radius:10px;padding:20px 22px;margin:18px 0;
+ box-shadow:0 1px 2px rgba(94,19,73,.05)}
+.enc{background:var(--prune-clair);border-left:5px solid var(--prune);padding:14px 18px;
+ border-radius:0 8px 8px 0;margin:18px 0;font-size:15.2px}
+.enc .t{display:block;font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;
+ font-weight:800;color:var(--prune-fonce);margin-bottom:6px}
+.enc.al{background:#FBF4F4;border-left-color:var(--ko)}.enc.al .t{color:var(--ko)}
+.enc.ci{background:#FCF8F0;border-left-color:var(--amb)}.enc.ci .t{color:#8A6418}
+.situ{background:#FCF9FB;border:1px dashed var(--filet);border-radius:8px;padding:16px 18px;margin:16px 0;font-size:15.2px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.duo>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:15px 17px;font-size:14.8px}
+.duo .h{font-weight:800;color:var(--prune-fonce);margin-bottom:7px;font-size:14.5px}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.tri>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:14px 15px;font-size:14.3px}
+.quad{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.quad>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:12px 13px;font-size:13.6px}
+.quad .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13px;
+ text-transform:uppercase;letter-spacing:.04em}
+.tri .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13.5px;
+ text-transform:uppercase;letter-spacing:.05em}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.8px;background:#fff}
+th,td{border:1px solid var(--filet);padding:9px 12px;text-align:left}
+thead th{background:var(--prune-clair);color:var(--prune-fonce);font-size:13.5px}
+tbody th{font-weight:600;color:var(--gris)}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.tot td,tr.tot th{background:#FBF3F8;font-weight:800;color:var(--prune-fonce)}
+.dl{display:inline-flex;align-items:center;gap:9px;background:var(--prune);color:#fff;text-decoration:none;
+ padding:11px 20px;border-radius:8px;font-weight:700;font-size:15px;margin:20px 0 4px}
+.dl:hover{background:var(--prune-fonce)}
+ol.q{padding-left:0;list-style:none;counter-reset:q}
+ol.q>li{margin:16px 0;padding-left:38px;position:relative}
+ol.q>li::before{counter-increment:q;content:counter(q);position:absolute;left:0;top:1px;
+ width:26px;height:26px;border-radius:50%;background:var(--prune-clair);color:var(--prune-fonce);
+ font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+b,strong{color:var(--vert)}
+footer{text-align:center;font-size:12.5px;color:var(--gris-moyen);padding:26px 18px 12px;
+ border-top:1px solid var(--filet);margin-top:44px}
+@media(max-width:860px){.quad{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.duo,.tri,.quad{grid-template-columns:1fr}h1{font-size:22px}}
+@media print{body{background:#fff}.dl{display:none}header.bandeau{background:#5E1349 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+td{vertical-align:top}td:first-child{white-space:nowrap}.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}.tri>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:14px 15px;font-size:14.3px}.tri .h,.duo .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13.5px;text-transform:uppercase;letter-spacing:.05em}.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}.duo>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:15px 17px;font-size:14.8px}@media(max-width:640px){.tri,.duo{grid-template-columns:1fr}}.enc,tr,.tri,.duo{break-inside:avoid}
+.enc p,.cols p{margin:6px 0}.enc.ok{background:#F1F7F3;border-left-color:var(--ok)}.enc.ok .t{color:var(--ok)}
+.cols{display:grid;gap:14px;margin:16px 0}.cols.c2{grid-template-columns:1fr 1fr}.cols.c3{grid-template-columns:repeat(3,1fr)}.cols.c4{grid-template-columns:repeat(4,1fr)}.cols.c5,.cols.c6{grid-template-columns:repeat(3,1fr)}
+.cols>div>.enc{margin:0;height:100%}.cols table{margin:0}
+p.src{font-size:12.5px;color:var(--gris-moyen);line-height:1.5}
+td,th{vertical-align:top}
+@media(max-width:760px){.cols.c2,.cols.c3,.cols.c4,.cols.c5,.cols.c6{grid-template-columns:1fr}}
+table.frise{table-layout:fixed;font-size:13px}.enc h3{margin:2px 0 8px;font-family:Georgia,serif;color:var(--prune-fonce);font-size:16px}
+.cols>div>.enc{margin:0}
+</style></head><body>
+<header class="bandeau"><div class="wrap"><div class="chapitre">IOBSP NIVEAU 2 · BLOC 2 · JOURNÉE 3 — MODULE 6</div><h1>Exemple commenté — un couple, quatre engagements</h1><p class="sous">Qui est engagé, et sur quel patrimoine ?</p></div></header>
+<main class="wrap">
+<p>Le module 6 énonce des articles. Cet exemple les applique à un seul couple, sur quatre opérations successives. La question est toujours la même — <b>qui est engagé, et sur quels biens ?</b> — et la réponse change à chaque fois.</p>
+<div class="enc"><span class="t">LE COUPLE</span><p><b>M. et M me Ferrand</b>, mariés en 2014 <b>sans contrat de mariage</b>: ils relèvent donc du <b>régime légal de la communauté réduite aux</b> <b>acquêts</b>.</p><table><thead><tr><th><b>Masse</b></th><th><b>Composition</b></th></tr></thead><tbody><tr><td><b>Biens propres de M. Ferrand</b></td><td>Un studio reçu par donation de ses parents en 2011</td></tr><tr><td><b>Biens propres de M me Ferrand</b></td><td>Un portefeuille de titres hérité en 2019</td></tr><tr><td><b>Biens communs</b></td><td>La maison familiale acquise en 2017 · les deux véhicules · l&#x27;épargne constituée depuis le mariage</td></tr><tr><td><b>Revenus</b></td><td>Chacun perçoit un salaire</td></tr></tbody></table></div>
+<div class="enc"><span class="t">LES DEUX TEXTES À MANIER</span><div class="enc"><p><b>Article 220</b> <i>— Chacun des époux a pouvoir pour passer seul les contrats qui ont pour objet l&#x27;entretien du ménage ou l&#x27;éducation des enfants:</i> <i>toute dette ainsi contractée par l&#x27;un oblige l&#x27;autre solidairement.</i> <b>La solidarité n&#x27;a pas lieu</b> <i>pour des dépenses manifestement excessives (…) ni</i> <i>pour les achats à tempérament</i> <b>ni pour les emprunts</b> <i>, à moins que ceux-ci ne portent sur des</i> <b>sommes modestes nécessaires aux besoins de la</b> <b>vie courante</b> <i>et que le montant cumulé de ces sommes, en cas de pluralité d&#x27;emprunts, ne soit pas manifestement excessif eu égard au train de</i> <i>vie du ménage.</i></p></div><div class="enc"><p><b>Article 1415</b> <i>— Chacun des époux ne peut engager que</i> <b>ses biens propres et ses revenus</b> <i>, par un cautionnement ou un emprunt, à moins que</i> <i>ceux-ci n&#x27;aient été contractés avec le</i> <b>consentement exprès de l&#x27;autre conjoint</b> <i>, lequel, dans ce cas,</i> <b>n&#x27;engage pas ses biens propres</b> <i>.</i></p></div></div>
+<table><tbody><tr><td></td><td><b>Cas n° 1 — M. Ferrand emprunte 15 000 € seul, pour une moto de loisir</b></td></tr></tbody></table>
+<div class="enc"><h3>Emprunt sans accord de l&#x27;épouse</h3><span class="t">ARTICLE 220: LA SOLIDARITÉ JOUE-T-ELLE ?</span><p><b>Non.</b> L&#x27;article 220 exclut expressément les emprunts de la solidarité ménagère. L&#x27;exception ne s&#x27;applique pas: 15 000 € n&#x27;est pas une « somme modeste nécessaire aux besoins de la vie courante», et une moto de loisir n&#x27;a rien de nécessaire à la vie courante.</p><span class="t">ARTICLE 1415: QUELS BIENS SONT ENGAGÉS ?</span><p>M. Ferrand ayant emprunté sans le consentement exprès de son épouse, il n&#x27;engage que ses <b>biens propres</b> — le studio reçu en donation — et ses <b>revenus</b>.</p><table><tbody><tr><td><b>ENGAGÉS</b> <b>Biens propres de M. Ferrand</b></td><td><b>ENGAGÉS</b> <b>Revenus de M. Ferrand</b></td><td><b>HORS D&#x27;ATTEINTE</b> Biens communs — dont la maison</td><td><b>HORS D&#x27;ATTEINTE</b> Biens propres de M me Ferrand</td></tr></tbody></table><div class="enc ok"><span class="t">CE QUE CELA SIGNIFIE CONCRÈTEMENT</span><p>Le prêteur <b>ne peut pas saisir la maison familiale</b>, pourtant achetée pendant le mariage, ni les véhicules, ni l&#x27;épargne commune. C&#x27;est toute la portée protectrice de l&#x27;article 1415 — et c&#x27;est ce que le prêteur cherchera à éviter en demandant l&#x27;accord de l&#x27;épouse.</p></div></div>
+<table><tbody><tr><td></td><td><b>Cas n° 2 — Le même emprunt, avec le consentement exprès de M me Ferrand</b></td></tr></tbody></table>
+<div class="enc"><h3>Emprunt avec accord exprès</h3><span class="t">CE QUE CHANGE LE CONSENTEMENT</span><p>Les <b>biens communs deviennent saisissables</b>, en plus des biens propres et des revenus de M. Ferrand. La maison familiale entre dans le gage du créancier.</p><span class="t">M ME FERRAND EST-ELLE DEVENUE CODÉBITRICE ?</span><p><b>Non</b>, et c&#x27;est la fin de l&#x27;article que l&#x27;on oublie systématiquement: le conjoint qui consent <b>n&#x27;engage pas ses biens propres</b>. Son<br>portefeuille de titres hérité reste hors d&#x27;atteinte. Elle a donné un accord, elle n&#x27;a pas emprunté.</p><table><tbody><tr><td><b>ENGAGÉS</b> <b>Biens propres de M. Ferrand</b></td><td><b>ENGAGÉS</b> <b>Revenus de M. Ferrand</b></td><td><b>ENGAGÉS</b> <b>Biens communs</b></td><td><b>HORS D&#x27;ATTEINTE</b> Biens propres de M me Ferrand</td></tr></tbody></table><div class="enc al"><span class="t">LE MOT QUI COMPTE: « EXPRÈS»</span><p>Le consentement doit être donné <b>expressément et à cet engagement-là</b>. Une présence lors de la signature, une connaissance de l&#x27;opération, un accord verbal ou tacite <b>ne suffisent pas</b>. En pratique, faites signer une mention de consentement distincte, datée et visant l&#x27;opération.</p></div></div>
+<table><tbody><tr><td></td><td><b>Cas n° 3 — M me Ferrand emprunte 900 € pour remplacer le lave-linge</b></td></tr></tbody></table>
+<div class="enc"><h3>Emprunt modeste et nécessaire à la vie courante</h3><p><b>ARTICLE 220: L&#x27;EXCEPTION S&#x27;APPLIQUE-T-ELLE ?</b></p><p><b>Oui, vraisemblablement.</b> L&#x27;exclusion des emprunts cède lorsque l&#x27;emprunt porte sur une <b>somme modeste nécessaire aux besoins de</b> <b>la vie courante</b>. Un lave-linge de 900 € pour un ménage salarié répond aux deux critères. <b>M. Ferrand est alors tenu solidairement</b>, sans avoir rien signé.</p><p><b>ET SI LE COUPLE AVAIT SOUSCRIT TROIS EMPRUNTS DE CE TYPE DANS L&#x27;ANNÉE ?</b></p><p>Le texte prévoit le cumul: le montant cumulé, en cas de pluralité d&#x27;emprunts, ne doit pas être <b>manifestement excessif eu égard au</b> <b>train de vie du ménage</b>. Trois emprunts modestes peuvent, ensemble, cesser de l&#x27;être — et la solidarité tomber.</p><div class="enc ci"><span class="t">LA LECTURE À RETENIR</span><p>L&#x27;article 220 pose une <b>exclusion de principe</b> des emprunts, assortie d&#x27;une <b>exception étroite</b>: somme modeste <b>ET</b> nécessaire à la vie courante <b>ET</b> cumul non manifestement excessif. Les trois conditions sont cumulatives. Un emprunt de 15 000 € pour une moto n&#x27;en remplit aucune; un lave-linge à 900 € les remplit toutes.</p></div></div>
+<table><tbody><tr><td></td><td><b>Cas n° 4 — M. Ferrand se porte caution du prêt professionnel de son frère</b></td></tr></tbody></table>
+<div class="enc"><h3>Cautionnement — deux séries de règles se superposent</h3><span class="t">ARTICLE 1415: QUELS BIENS SONT ENGAGÉS ?</span><p>L&#x27;article vise le cautionnement <b>au même titre que l&#x27;emprunt</b>. Sans consentement exprès de son épouse, M. Ferrand n&#x27;engage que ses <b>biens propres et ses revenus</b>. Les biens communs sont hors d&#x27;atteinte.</p><span class="t">LE CAUTIONNEMENT EST-IL VALABLEMENT FORMÉ ?</span><p>À vérifier au regard de l&#x27; <b>article 2297</b>: la caution personne physique doit avoir <b>apposé elle-même</b> la mention par laquelle elle s&#x27;engage à payer ce que doit le débiteur en cas de défaillance, dans la limite d&#x27;un montant en principal et accessoires <b>exprimé en toutes lettres</b> <b>et en chiffres</b>. À défaut, l&#x27;engagement est <b>nul</b>. En cas de divergence entre les deux écritures, c&#x27;est la somme <b>en toutes lettres</b> qui vaut.</p><span class="t">LE CRÉANCIER A-T-IL REMPLI SES OBLIGATIONS ?</span><p>Deux obligations distinctes, souvent confondues:</p><p>• <b>Mise en garde (art. 2299)</b> — due lorsque l&#x27;engagement <b>du frère débiteur</b> est inadapté à <b>ses</b> capacités financières. Sanction: le créancier est déchu de son droit contre la caution <b>à hauteur du préjudice subi par celle-ci</b>.</p><p>• <b>Proportionnalité (art. 2300)</b> — porte sur <b>la caution</b>: si l&#x27;engagement était, lors de sa conclusion, manifestement disproportionné aux revenus et au patrimoine de M. Ferrand, il est <b>réduit</b> au montant à hauteur duquel il pouvait s&#x27;engager.</p><span class="t">CAUTION SIMPLE OU SOLIDAIRE ?</span><p>Si l&#x27;acte prévoit la solidarité, M. Ferrand perd les <b>bénéfices de discussion et de division</b>: le créancier peut le poursuivre directement, pour le tout, sans avoir rien tenté contre son frère. Mais la mention doit alors <b>reconnaître cette privation</b>; à défaut, il conserve le droit de s&#x27;en prévaloir et le cautionnement <b>redevient simple</b>.</p><div class="enc al"><span class="t">LES DEUX ERREURS QUI COÛTENT LA QUESTION</span><p><b>1.</b> Confondre les articles 2299 et 2300. La <b>mise en garde</b> regarde les capacités du <b>débiteur</b>; la <b>proportionnalité</b> regarde le patrimoine de la <b>caution</b>.<br><b>2.</b> Répondre « décharge totale» pour la disproportion. Depuis la réforme du 15 septembre 2021, entrée en vigueur le 1 er janvier 2022, la sanction est la <b>réduction</b>, non l&#x27;anéantissement.</p></div></div>
+<table><tbody><tr><td></td><td><b>Le tableau de synthèse des quatre cas</b></td></tr></tbody></table>
+<table><thead><tr><th><b>Opération</b></th><th><b>Texte applicable</b></th><th><b>Qui est engagé, et sur quoi</b></th></tr></thead><tbody><tr><td><b>Emprunt de 15 000 € (moto),</b> <b>seul</b></td><td>Art. 1415 — l&#x27;art. 220 exclut les emprunts</td><td>M. Ferrand seul, sur ses <b>biens propres et revenus</b>. Biens communs hors d&#x27;atteinte</td></tr><tr><td><b>Même emprunt, avec</b> <b>consentement exprès</b></td><td>Art. 1415</td><td>Biens propres et revenus de M. Ferrand <b>+ biens communs</b>. Les biens propres de l&#x27;épouse restent hors d&#x27;atteinte</td></tr><tr><td><b>Emprunt de 900 € (lave-linge)</b></td><td>Art. 220, exception aux emprunts</td><td><b>Solidarité</b>: M. Ferrand est tenu sans avoir signé — sous réserve du cumul</td></tr><tr><td><b>Cautionnement du prêt du frère</b></td><td>Art. 1415 + art. 2297, 2299, 2300</td><td>Biens propres et revenus de M. Ferrand; validité soumise à la mention; réduction possible pour disproportion</td></tr></tbody></table>
+<div class="enc"><span class="t">LA MÉTHODE, EN TROIS QUESTIONS</span><p><b>1. De quelle dette s&#x27;agit-il ?</b> Emprunt ou cautionnement → article 1415 si le couple est en communauté. Dette ménagère ordinaire → article 220.<br><b>2. S&#x27;il s&#x27;agit d&#x27;un emprunt, est-il modeste ET nécessaire à la vie courante ET non cumulé de façon excessive ?</b> Si oui, la solidarité de l&#x27;article 220 peut jouer malgré l&#x27;exclusion de principe.<br><b>3. Le conjoint a-t-il donné un consentement exprès ?</b> Sa réponse détermine si les biens communs entrent dans le gage du créancier.</p><p>Et ne répondez <b>jamais</b> « le conjoint est engagé» sans dire <b>sur quelle masse</b>: biens propres, revenus, biens communs sont trois patrimoines distincts, et la question porte presque toujours sur celui qui est atteint.</p></div>
+<p><i>Document fictif à usage pédagogique. Le couple et les opérations sont imaginaires; les règles citées ne le sont pas. Sources: code civil, art. 220, 1415, 2288, 2295 à 2297,</i> <i>2299 et 2300 · ordonnance n° 2021-1192 du 15 septembre 2021 portant réforme du droit des sûretés, en vigueur au 1 er janvier 2022 · loi n° 2010-737 du 1 er juillet 2010 ·</i> <i>arrêté du 18 juillet 2022, annexe A, point B.1.</i></p>
+</main>
+<footer>TMK Performances - N° Siret : 49841924100027 - Code NAF : 8559A</footer>
+</body></html>
